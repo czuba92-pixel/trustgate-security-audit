@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TrustGate — MCP Security Audit</title>
+  <meta name="description" content="Dynamic security testing for authorized MCP and agent-commerce systems.">
+  <style>
+    :root{font-family:Inter,system-ui,sans-serif;color:#141414;background:#f7f7f5}
+    body{margin:0}.wrap{max-width:860px;margin:auto;padding:32px 22px 72px}
+    header{padding:70px 0 45px}.tag{font-weight:700;letter-spacing:.08em;font-size:.78rem}
+    h1{font-size:clamp(2.4rem,7vw,4.8rem);line-height:.95;margin:14px 0 22px;letter-spacing:-.05em}
+    h2{margin-top:42px;font-size:1.55rem}.lead{font-size:1.2rem;line-height:1.6;max-width:720px}
+    .card{background:white;border:1px solid #ddd;border-radius:16px;padding:24px;margin:22px 0}
+    .price{font-size:2rem;font-weight:800}.muted{color:#666}ul{line-height:1.75;padding-left:22px}
+    a{color:inherit}.pill{display:inline-block;border:1px solid #222;border-radius:999px;padding:8px 13px;margin:4px 5px 4px 0}
+    footer{margin-top:64px;padding-top:24px;border-top:1px solid #ddd;color:#666;font-size:.92rem}
+  </style>
+</head>
+<body><main class="wrap">
+<header>
+  <div class="tag">TRUSTGATE · SECURITY TESTING</div>
+  <h1>Break the payment flow before an attacker does.</h1>
+  <p class="lead">TrustGate is an independent dynamic security audit for MCP and agent-commerce systems. We test authorization binding, replay resistance, idempotency and fail-closed behavior against a target you own or are explicitly authorized to test.</p>
+</header>
+<section class="card">
+  <div class="muted">Founder audit · one authorized target</div>
+  <div class="price">$49 one-time</div>
+  <p>Designed for early MCP/payment-agent builders who want a fast, reproducible security check before broader launch.</p>
+  <span class="pill">Replay resistance</span><span class="pill">Idempotency</span><span class="pill">Authorization binding</span><span class="pill">Fail-closed behavior</span>
+</section>
+<section>
+  <h2>What you get</h2>
+  <ul>
+    <li>Dynamic adversarial testing of one MCP or agent-commerce target.</li>
+    <li>Checks for replay, stale or changed transaction context, and authorization-ID reuse.</li>
+    <li>Deterministic PASS / FAIL_CLOSED findings with reproduction notes.</li>
+    <li>A concise report describing observed failures and their security impact.</li>
+  </ul>
+</section>
+<section>
+  <h2>Current evidence</h2>
+  <p>TrustGate v0.5 currently passes 30/30 local unit and integration tests. Its safe reference MCP target passes 15/15 scanner cases, while intentionally vulnerable replay and idempotency fixtures are rejected FAIL_CLOSED on the expected controls.</p>
+  <p class="muted">These results describe our test harness, not a guarantee that any customer system is vulnerability-free.</p>
+</section>
+<section>
+  <h2>Who this is for</h2>
+  <p>Teams building MCP servers, AI-agent purchasing flows, payment agents, or agentic-commerce authorization layers.</p>
+  <p><strong>Authorization required:</strong> we test only systems you own or have explicit permission to assess.</p>
+</section>
+<section>
+  <h2>Delivery & refunds</h2>
+  <p>After purchase, we contact you to collect the target details and proof of authorization. Delivery is normally a concise findings report plus reproduction notes for the agreed target.</p>
+  <p>If we cannot accept the target before testing begins, the order is refunded. Once an authorized audit has started, refunds are handled case by case based on work already performed.</p>
+</section>
+<section>
+  <h2>Contact</h2>
+  <p>TrustGate is an independent security-testing service operated by Tomasz Czuba in Poland.</p>
+  <p>Email: <a href="mailto:czuba92@gmail.com">czuba92@gmail.com</a></p>
+</section>
+<footer>
+  <p>TrustGate · Dynamic MCP / agent-commerce security testing · Poland</p>
+  <p>TrustGate does not process customer payments itself and does not execute real purchases. Audit activity is limited to explicitly authorized targets.</p>
+</footer>
+</main></body></html>
