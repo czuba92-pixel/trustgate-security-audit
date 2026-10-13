@@ -27,7 +27,7 @@
   <div class="muted">Founder audit · one authorized target</div>
   <div class="price">$49 one-time</div>
   <p>Designed for early MCP/payment-agent builders who want a fast, reproducible security check before broader launch.</p>
-  <p><a href="https://buy.stripe.com/6oU9AU8C6ahTcoY75A8ww00" style="display:inline-block;background:#141414;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-weight:700">Buy the Founder Audit — $49</a></p>
+  <p><a id="trustgate-founder-checkout" href="https://buy.stripe.com/6oU9AU8C6ahTcoY75A8ww00" style="display:inline-block;background:#141414;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-weight:700">Buy the Founder Audit — $49</a></p>
   <span class="pill">Replay resistance</span><span class="pill">Idempotency</span><span class="pill">Authorization binding</span><span class="pill">Fail-closed behavior</span>
 </section>
 <section>
@@ -62,5 +62,48 @@
 <footer>
   <p>TrustGate · Dynamic MCP / agent-commerce security testing · Poland</p>
   <p>TrustGate does not process customer payments itself and does not execute real purchases. Audit activity is limited to explicitly authorized targets.</p>
+<p>Privacy: We measure anonymous page visits and Stripe checkout-link clicks using EU-hosted PostHog. No analytics cookies, browser storage, personal profiles, or session recordings. Do Not Track preferences are respected. <a href="https://posthog.com/privacy">PostHog privacy</a>.</p>
 </footer>
-</main></body></html>
+</main><script>
+  // Privacy-first aggregate analytics: no cookies, persistent IDs, or session recordings.
+  (function () {
+    "use strict";
+    if (navigator.globalPrivacyControl === true ||
+        navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
+    if (!window.crypto || typeof window.crypto.randomUUID !== "function") return;
+    var visitId = window.crypto.randomUUID(); // Ephemeral; shared only across this page and checkout click.
+    var referrerDomain = "direct";
+    try {
+      if (document.referrer) {
+        var host = new URL(document.referrer).hostname;
+        if (/^[a-z0-9.-]{1,100}$/i.test(host)) referrerDomain = host;
+      }
+    } catch (_) {}
+    function capture(name) {
+      fetch("https://eu.i.posthog.com/i/v0/e/", {
+        method: "POST",
+        mode: "cors",
+        keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          api_key: "phc_tRPEYfwVamsyoEx62jQVJqZDiEQwYy365T2JgFSUiEJh",
+          event: name,
+          distinct_id: visitId,
+          properties: {
+            "$process_person_profile": false,
+            "$host": "czuba92-pixel.github.io",
+            "$pathname": "/trustgate-security-audit/",
+            "$current_url": "https://czuba92-pixel.github.io/trustgate-security-audit/",
+            referrer_domain: referrerDomain
+          }
+        })
+      }).catch(function () {}); // Analytics must never affect buying or page rendering.
+    }
+    capture("$pageview");
+    var purchaseLink = document.getElementById("trustgate-founder-checkout");
+    if (purchaseLink) purchaseLink.addEventListener("click", function () {
+      capture("trustgate checkout clicked");
+    });
+  }());
+</script>
+</body></html>
