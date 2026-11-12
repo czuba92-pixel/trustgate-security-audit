@@ -8,11 +8,11 @@ from decimal import Decimal
 from eth_account import Account
 from eth_account.messages import encode_defunct
 
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parents[1]
 ENDPOINT="https://devnode.telegraphprotocol.com"
 INTENT="ONCHAIN_METRIC_VERIFY_GENERAL"
-DATA=ROOT/"evaluation_pairs_v1.jsonl"
-EVIDENCE=ROOT/"evaluation_pairs_evidence.json"
+DATA=ROOT/"data/evaluation_pairs_v1.jsonl"
+EVIDENCE=ROOT/"evidence/evaluation_pairs_evidence.json"
 KEY=ROOT/".contributor_key.json"
 LEDGER=ROOT/"submission_ledger.json"
 
