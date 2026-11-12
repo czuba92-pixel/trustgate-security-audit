@@ -6,7 +6,7 @@ import json, os, time, datetime, hashlib, urllib.request, urllib.parse, urllib.e
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parents[1]
 INTENT="ONCHAIN_METRIC_VERIFY_GENERAL"
 ENDPOINTS={"1rpc":"https://1rpc.io/eth","flashbots":"https://rpc.flashbots.net"}
 SAMPLES=[
@@ -94,8 +94,8 @@ def main():
  if len(rows)<5:raise SystemExit("FAILED: fewer than 5 independently corroborated records")
  root=ROOT
  data=("".join(json.dumps(x,ensure_ascii=False,separators=(",",":"))+"\n" for x in rows)).encode("utf8")
- (root/"evaluation_pairs_v1.jsonl").write_bytes(data)
+ (root/"data/evaluation_pairs_v1.jsonl").write_bytes(data)
  evidence={"intent_id":INTENT,"generated_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"accepted_local_checks":len(rows),"failures":fails,"samples":reports,"body_sha256":hashlib.sha256(data).hexdigest(),"disclosure":"AI-assisted generation and fixed numeric perturbations; independent 1RPC+Flashbots+Blockscout checks; network acceptance NOT YET known"}
- (root/"evaluation_pairs_evidence.json").write_text(json.dumps(evidence,ensure_ascii=False,indent=2))
+ (root/"evidence/evaluation_pairs_evidence.json").write_text(json.dumps(evidence,ensure_ascii=False,indent=2))
  print("RESULT",json.dumps({"rows":len(rows),"failures":len(fails),"sha256":evidence["body_sha256"],"bytes":len(data)},ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
