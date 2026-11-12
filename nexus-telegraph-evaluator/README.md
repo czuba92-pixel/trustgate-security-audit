@@ -2,7 +2,7 @@
 
 **Track:** Evaluators · **Intent:** `ONCHAIN_METRIC_VERIFY_GENERAL` · **Issue:** [Telegraph #87](https://github.com/telegraphprotocol/bounties/issues/87)
 
-**Status verified on November 12, 2026:** Three independently corroborated Ethereum balance evaluation pairs were submitted through the official Sepolia evaluation-pool API using an EIP-191 message signature. The node returned **HTTP 200, signed=true, received=3, accepted=3, rejected=0**. The independent readback returned all three rows as **`admitted`** with **`attested`** provenance; **`eligible` is not yet confirmed** (requires subsequent pool freeze). The pool has 5 total contributors, 4 eligible contributors as of epoch 2076. The three case hashes are recorded in `evidence/pool_readback.json`.
+**Status verified on November 12, 2026:** Three independently corroborated Ethereum balance evaluation pairs were submitted through the official Sepolia evaluation-pool API using an EIP-191 message signature. The node returned **HTTP 200, signed=true, received=3, accepted=3, rejected=0**. Initially all three were **`admitted`** with **`attested`** provenance. On November 12 at 23:56 UTC (epoch 2077), an independent readback showed all **three rows `eligible`**, with **5 total contributors and 5 eligible contributors** (meeting the pool's minimum). The three case hashes are documented in `evidence/pool_readback.json`; the updated official node proof is in `evidence/official_eligible_receipt.json`.
 
 **Public contributor address:** `0xC62cA7cC2d30b88F144E1adF20c9a363818B759f`. Only an off-chain EIP-191 signature was used. No deposits, gas, real trades, payments, or interaction with Tradebot/BRAIN production occurred. No private keys are included in this branch.
 
@@ -39,7 +39,7 @@ The WASM binary is also distributed as **base64 text** in `build/nexus_comparato
 
 ## Limits and integrity
 
-This is an **experimental testnet contribution**. An `admitted` row is not `eligible`; eligibility, evaluator canonical registration, ranking impact and hackathon prize status require independent confirmations. Historical archive providers may return HTTP 429/410, pruned-state errors or timeout; failures must not be replaced with current balances. It works only with **Ethereum native ETH balance at explicit historical blocks**, not every EVM chain or `tx_count`. The comparator follows the network's existing reference rule; it is not a claim of a novel scoring algorithm.
+This is an **experimental testnet contribution**. The initial `admitted` status was subsequently promoted to `eligible` for all three rows and was independently confirmed. However, evaluator canonical registration, ranking impact, completed final hackathon entry, and prize status all still require separate evidence. Historical archive providers may return HTTP 429/410, pruned-state errors or timeout; failures must not be replaced with current balances. It works only with **Ethereum native ETH balance at explicit historical blocks**, not every EVM chain or `tx_count`. The comparator follows the network's existing reference rule; it is not a claim of a novel scoring algorithm.
 
 The user's earlier Tradebot work informed the **methodology** (independent evidence, fail-closed claims, adversarial checks). Source files here are original independent work, not a change to Tradebot/BRAIN.
 
