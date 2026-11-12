@@ -4,7 +4,7 @@
 **Track:** Evaluators  
 **Intent:** `ONCHAIN_METRIC_VERIFY_GENERAL`  
 **Network:** Telegraph/Anjoman Sepolia evaluation pool; queried source data is Ethereum **mainnet** history  
-**Status:** Three contributed rows are `admitted` (NOT YET `eligible`), and public readback proves this. No hackathon prize, registration confirmation or final-entry receipt is claimed.
+**Status:** Three contributed rows were `admitted` and later confirmed `eligible` at epoch 2077, and public readback proves this. No hackathon prize, registration confirmation or final-entry receipt is claimed.
 
 This is a reproducible **accessible alternative to a 2–5 minute demonstration**: it shows an input, verified result, the exact Telegraph integration receipt, and a failure case. No personal keys, logins or capital required.
 
@@ -47,7 +47,7 @@ The independent GET readback reports **three `admitted` rows with `attested` pro
 
 [Verify the result directly on Telegraph](https://devnode.telegraphprotocol.com/api/evalpool/submissions/mine?submitter=0xC62cA7cC2d30b88F144E1adF20c9a363818B759f&intent_id=ONCHAIN_METRIC_VERIFY_GENERAL). This is public, read-only; no account is necessary.
 
-[Check pool status](https://devnode.telegraphprotocol.com/api/evalpool/status?intent_id=ONCHAIN_METRIC_VERIFY_GENERAL). At time of submission: **5 total contributors, 4 `eligible`, minimum 5 to activate**. Our new three rows had not yet been promoted to `eligible`.
+[Check pool status](https://devnode.telegraphprotocol.com/api/evalpool/status?intent_id=ONCHAIN_METRIC_VERIFY_GENERAL). At initial submission: **5 total contributors, 4 `eligible`**. The subsequent node readback at epoch **2077** shows **5 total contributors, all 5 `eligible`**, meeting the minimum, and all three of our rows `eligible`. The JSON receipt is in `evidence/official_eligible_receipt.json`.
 
 ## 4. Reproduce fail-closed code tests
 
@@ -64,7 +64,7 @@ A case is `UNVERIFIED` when one of the independent providers returns a different
 
 ## 5. Honest limitations
 
-- An `admitted` row is not an `eligible` row; eventual pool promotion is a separate server decision.
+- `admitted` is not the same as `eligible`, but the official node has since independently confirmed `eligible` for all three rows; that does not establish ranking impact or a competition win.
 - Public archival Ethereum RPCs prune state or rate-limit queries, so not all old blocks can be independently checked at any moment.
 - The confirmed dataset is **3 small cases**, not a representative benchmark proving overall model quality or economic impact.
 - This package does not claim live ranking improvement, paid demand, external adoption, a mainnet deployment, contest acceptance or income.
