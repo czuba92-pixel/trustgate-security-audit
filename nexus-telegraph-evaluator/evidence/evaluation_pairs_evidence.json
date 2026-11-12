@@ -1,0 +1,53 @@
+{
+  "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+  "generated_at_utc": "2026-11-12T21:13:30.828865+00:00",
+  "samples": [
+    {
+      "case": "Ethereum block 20,000,000: balance verification for vitalik.eth public address",
+      "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "block": 20000000,
+      "balance_wei": "495394228822711118729",
+      "balance_gwei_six_decimals": "495394228822.711119",
+      "false_gwei": "346775960175.897783",
+      "blockscout_at_or_before": 19997048,
+      "providers": [
+        "flashbots",
+        "blockscout"
+      ],
+      "source_url": "https://eth.blockscout.com/api/v2/addresses/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/coin-balance-history?block_number=20000000",
+      "prior_independent_rpc_crosscheck": "VERIFIED in 2026-11-12T21 UTC batch run job_1023d84ddf35"
+    },
+    {
+      "case": "Ethereum Coinbase historical balance",
+      "address": "0x503828976D22510aad0201ac7ec88293211D23Da",
+      "block": 20500000,
+      "balance_wei": "6755096859135004030",
+      "balance_gwei_six_decimals": "6755096859.135004",
+      "false_gwei": "8781625916.875505",
+      "blockscout_at_or_before": 20434407,
+      "providers": [
+        "flashbots",
+        "blockscout"
+      ],
+      "source_url": "https://eth.blockscout.com/api/v2/addresses/0x503828976D22510aad0201ac7ec88293211D23Da/coin-balance-history?block_number=20500000",
+      "prior_independent_rpc_crosscheck": "VERIFIED in 2026-11-12T21 UTC batch run job_1023d84ddf35"
+    },
+    {
+      "case": "Ethereum historical address analysis at block 19.5m",
+      "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "block": 19500000,
+      "balance_wei": "955252261191686732332",
+      "balance_gwei_six_decimals": "955252261191.686732",
+      "false_gwei": "668676582834.180712",
+      "blockscout_at_or_before": 19498309,
+      "providers": [
+        "flashbots",
+        "blockscout"
+      ],
+      "source_url": "https://eth.blockscout.com/api/v2/addresses/0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045/coin-balance-history?block_number=19500000",
+      "prior_independent_rpc_crosscheck": "VERIFIED in 2026-11-12T21 UTC batch run job_1023d84ddf35"
+    }
+  ],
+  "body_sha256": "b33c15048a692b3096b435fc9a199e1d64ec62fa860da16bc49e1cc109a47c46",
+  "disclosure": "AI-assisted preference pairs, real balances verified by independent services; false magnitudes deliberately injected. Reviewer must confirm eligibility."
+}
