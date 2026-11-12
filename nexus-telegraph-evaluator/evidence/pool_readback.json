@@ -1,0 +1,28 @@
+{
+  "queried_utc": "2026-11-12T21:14:00.041128+00:00",
+  "address": "0xC62cA7cC2d30b88F144E1adF20c9a363818B759f",
+  "count": 3,
+  "rows": [
+    {
+      "intent_id": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "row_hash": "77ced07c4fb25e2b24b6326abdd0a2e7df0e84ce0cdf1672d72d6173913a3503",
+      "case_id": "3260341c722b16a4e32add74387677992316867ca7a68021aac63942219142dc",
+      "status": "admitted",
+      "provenance_class": "attested"
+    },
+    {
+      "intent_id": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "row_hash": "00654a2c349d2ca512d02ef845de73bf932f2b7e9b77b4b7db8063ef1ac493f4",
+      "case_id": "112363f63774173ee811ae9d6b073d2b09a8acc987cba0cd1aeb7a2a1462f226",
+      "status": "admitted",
+      "provenance_class": "attested"
+    },
+    {
+      "intent_id": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "row_hash": "3981307a553c9830ff6b8666ea9a0bee90e882e66d813f7e2438deefe3cecd5f",
+      "case_id": "9726d696fb0773e52d2b7706579306b3cfe8d25c4087bc1e73ed884ea73b26dc",
+      "status": "admitted",
+      "provenance_class": "attested"
+    }
+  ]
+}
