@@ -6,7 +6,7 @@ from pathlib import Path
 import json,urllib.request,urllib.parse,urllib.error,hashlib,datetime,time,difflib,re
 from decimal import Decimal,ROUND_HALF_UP
 from build_dataset import SAMPLES,blockscout
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parents[1]
 RPCS={"flashbots":"https://rpc.flashbots.net"}
 SAMPLES = SAMPLES + [
  ("Vitalik block 19.5m",SAMPLES[0][1],19500000),
@@ -102,8 +102,8 @@ def main():
   (ROOT/"dataset_rejections.json").write_text(json.dumps(skipped,indent=2))
   raise SystemExit("STOP: only "+str(len(rows))+" quality-assured rows (need >=5)")
  raw=("".join(json.dumps(r,ensure_ascii=False,separators=(",",":"))+"\n" for r in rows)).encode()
- (ROOT/"evaluation_pairs_v1.jsonl").write_bytes(raw)
+ (ROOT/"data/evaluation_pairs_v1.jsonl").write_bytes(raw)
  evidence_report={"intent":"ONCHAIN_METRIC_VERIFY_GENERAL","generated_at_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"samples":evidence,"rejected_candidates":skipped,"body_sha256":hashlib.sha256(raw).hexdigest(),"disclosure":"AI-assisted cases, independently verified real on-chain values; errors deliberately injected for rejected examples. No submission claimed yet."}
- (ROOT/"evaluation_pairs_evidence.json").write_text(json.dumps(evidence_report,indent=2))
+ (ROOT/"evidence/evaluation_pairs_evidence.json").write_text(json.dumps(evidence_report,indent=2))
  print("DATASET_READY",json.dumps({"rows":len(rows),"skipped":len(skipped),"body_sha256":evidence_report["body_sha256"],"bytes":len(raw)},ensure_ascii=False),flush=True)
 if __name__=="__main__":main()
