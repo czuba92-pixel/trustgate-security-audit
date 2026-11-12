@@ -1,0 +1,27 @@
+{
+  "status": "VERIFIED",
+  "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+  "chain": "ethereum",
+  "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "block": 20000000,
+  "metric": "balance",
+  "timestamp_utc": "2026-11-12T20:41:11.608114+00:00",
+  "observations": [
+    {
+      "provider": "1rpc",
+      "endpoint": "https://1rpc.io/eth",
+      "chain": "0x1",
+      "block_hash": "0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183",
+      "balance_wei": "495394228822711118729"
+    },
+    {
+      "provider": "flashbots",
+      "endpoint": "https://rpc.flashbots.net",
+      "chain": "0x1",
+      "block_hash": "0xd24fd73f794058a3807db926d8898c6481e902b7edb91ce0d479d6760f276183",
+      "balance_wei": "495394228822711118729"
+    }
+  ],
+  "balance_gwei_exact": "495394228822.711118729",
+  "notice": "balance_gwei_exact numeric expression may round: DO NOT USE AS CANONICAL; calculate from exact wei integer for user-facing values"
+}
