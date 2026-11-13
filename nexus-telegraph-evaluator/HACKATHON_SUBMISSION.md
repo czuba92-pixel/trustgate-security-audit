@@ -28,6 +28,10 @@ NEXUS On-chain Integrity Evaluator is a reproducible, evidence-first experiment 
 
 The README and DEMO provide detailed prerequisites, expected outcomes, limitations, and public evidence. These tests were reported as passing during preparation; this entry pack does not assert a new test run.
 
+## Latest official readback — November 13, 2026
+
+The original contributor wallet `0xC62cA7cC2d30b88F144E1adF20c9a363818B759f` was checked again against the [live Sepolia evalpool readback](https://devnode.telegraphprotocol.com/api/evalpool/submissions/mine?submitter=0xC62cA7cC2d30b88F144E1adF20c9a363818B759f&intent_id=ONCHAIN_METRIC_VERIFY_GENERAL): exactly **three** previously submitted `preference_pair` rows still show `eligible` and `attested`, with hashes `77ced07c4fb25e2b24b6326abdd0a2e7df0e84ce0cdf1672d72d6173913a3503`, `00654a2c349d2ca512d02ef845de73bf932f2b7e9b77b4b7db8063ef1ac493f4`, and `3981307a553c9830ff6b8666ea9a0bee90e882e66d813f7e2438deefe3cecd5f`. These accepted rows are a different record kind from the **unaccepted** deterministic v1/v2/v3 truth-source work.
+
 ## Current validation work — November 13, 2026 (v3, NOT submitted)
 
 The authoritative Anjoman documentation explicitly supports both YAML as a string and JSON-object `source` rows. Therefore changing v1 to a JSON object (v2) alone **cannot be treated as a validated fix** for `source_unparseable`.
