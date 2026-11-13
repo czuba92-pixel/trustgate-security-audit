@@ -1,0 +1,69 @@
+version: "1"
+kind: miner
+id: 0
+slug: nexus-eth-pinned-balance-reference
+protocol: generic
+name: NEXUS Ethereum Historical Balance Reference
+description: >-
+  Keyless public Ethereum mainnet historical native-balance reference.
+  Supports only chain=ethereum and metric=balance at an explicit numeric block.
+base_url: https://eth.blockscout.com
+auth:
+  type: none
+endpoints:
+  - path: /pinned-eth-balance
+    external_path: /api/v2/addresses/{address}/coin-balance-history
+    method: GET
+    description: >-
+      Return Ethereum native ETH balance at the specified historical block.
+      URL path address is exactly 0x plus 40 hexadecimal digits.
+      Query block_number is an integer height, never latest.
+      The first history item is the most recent state change at or before
+      the requested block, expressed in wei. No result means no reference.
+      Reject non-ethereum chains and non-balance metrics.
+    intents:
+      - ONCHAIN_METRIC_VERIFY_GENERAL
+    params:
+      path:
+        required:
+          - name: address
+            type: string
+            intents: ["*"]
+            description: EVM Ethereum address, 0x followed by 40 hex digits.
+      query:
+        required:
+          - name: block_number
+            type: integer
+            intents: ["*"]
+            description: Historical Ethereum block number.
+      header:
+        required:
+          - name: X-NEXUS-Chain
+            type: string
+            intents: ["*"]
+            description: The question's chain, only ethereum.
+            accepted_fields:
+              - value: ethereum
+                intents: ["*"]
+                description: Ethereum mainnet only.
+          - name: X-NEXUS-Metric
+            type: string
+            intents: ["*"]
+            description: The question's metric, only balance.
+            accepted_fields:
+              - value: balance
+                intents: ["*"]
+                description: Native ETH balance only.
+intent_mapping:
+  ONCHAIN_METRIC_VERIFY_GENERAL:
+    endpoint: /pinned-eth-balance
+    input:
+      address: {from: address}
+      block_number: {from: block}
+      X-NEXUS-Chain: {from: chain}
+      X-NEXUS-Metric: {from: metric}
+    output:
+      balance_gwei: {path: items.0.value, unit: wei}
+semantics:
+  supported_intents:
+    - ONCHAIN_METRIC_VERIFY_GENERAL
