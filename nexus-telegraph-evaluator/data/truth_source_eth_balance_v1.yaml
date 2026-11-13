@@ -1,0 +1,65 @@
+version: '1'
+kind: miner
+id: 0
+slug: nexus-eth-mainnet-history-blockscout
+protocol: generic
+name: NEXUS Ethereum Historical Native Balance (Blockscout)
+description: >-
+  Public, no-key Blockscout Ethereum MAINNET historical native ETH balance.
+  The question must request metric=balance and chain=ethereum with an explicit
+  numeric historical block and a 0x-prefixed Ethereum address. This source
+  does not answer tx_count or Polygon/Arbitrum questions. A latest-only
+  balance endpoint must never replace the historical block answer.
+base_url: https://eth.blockscout.com
+auth:
+  type: none
+endpoints:
+  - path: /nexus-ethereum-historical-balance
+    external_path: /api/v2/addresses/{address}/coin-balance-history
+    method: GET
+    description: >-
+      Historical Ethereum MAINNET native ETH balance only, at exact requested
+      block_number. Query the given address via the public Blockscout API.
+      For balance queries only: metric must equal balance; chain must equal
+      ethereum. The JSON items[0].value is the latest balance-change state at
+      or before block_number, expressed as decimal wei. Do NOT use for tx_count,
+      Polygon, Arbitrum, unsupported addresses or latest-only questions.
+    intents:
+      - ONCHAIN_METRIC_VERIFY_GENERAL
+    params:
+      path:
+        required:
+          - name: address
+            type: string
+            intents: ['*']
+            description: Ethereum EVM address, precisely 0x followed by 40 hex digits.
+      query:
+        required:
+          - name: block_number
+            type: integer
+            intents: ['*']
+            description: >-
+              Exact specified historical Ethereum mainnet block height as a
+              decimal integer. Never substitute latest for a pinned height.
+    
+intent_mapping:
+  ONCHAIN_METRIC_VERIFY_GENERAL:
+    endpoint: /nexus-ethereum-historical-balance
+    input:
+      address:
+        from: address
+        how: Only a 0x-prefixed Ethereum mainnet EVM address.
+      block_number:
+        from: block
+        how: The requested exact block number, integer. Never use latest.
+    output:
+      balance_gwei:
+        path: items.0.value
+        unit: wei
+        how: >-
+          Decimal wei at the most recent recorded balance change at or before
+          the pinned block; convert to Gwei by dividing by 1e9. If items is
+          empty, return no reference, not zero or a current balance.
+semantics:
+  supported_intents:
+    - ONCHAIN_METRIC_VERIFY_GENERAL
