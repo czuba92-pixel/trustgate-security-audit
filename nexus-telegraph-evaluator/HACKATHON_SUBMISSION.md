@@ -1,5 +1,7 @@
 # Telegraph Hackathon Season II — evaluator entry pack (DRAFT, not submitted)
 
+**November 13 feasibility audit (read-only):** [cross-chain archival API evidence and no-go verdict](evidence/H2_API_GAP_20261113.md). None of the tested no-key providers met the full historical-input coverage and acceptance requirement. This is not proof of global impossibility, and no further upload was performed. Until official validator and usable source evidence exists, treat #87 as **blocked**, not delivered. The Issue's own bounty is explicitly **unfunded**.
+
 ## Critical correction — authoritative issue #87 changed 2026-11-13 14:12 UTC
 
 **Do not claim this repository currently completes issue #87 or is a qualifying H2 Evaluators delivery.** The authoritative [current issue #87](https://github.com/telegraphprotocol/bounties/issues/87) now calls for keyless public-API `truth_source` evaluation material for the **deterministic** intent `ONCHAIN_METRIC_VERIFY_GENERAL`. It explicitly states **do not build a comparator/scoring module** for this intent. The earlier three `eligible` `preference_pair` rows remain real node receipts, but they **do not fulfill the currently required deliverable**; the legacy WASM comparator is unrelated to what #87 presently accepts. Another public claimant with 241 eligible preference-pair rows reached the same conclusion in [their updated progress comment](https://github.com/telegraphprotocol/bounties/issues/87#issuecomment-6855425266).
