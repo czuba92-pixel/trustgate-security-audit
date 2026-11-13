@@ -41,7 +41,24 @@ endpoints:
             description: >-
               Exact specified historical Ethereum mainnet block height as a
               decimal integer. Never substitute latest for a pinned height.
-    
+      header:
+        required:
+          - name: X-NEXUS-Chain
+            type: string
+            intents: ['*']
+            description: Only ethereum is supported; do not route other chains.
+            accepted_fields:
+              - value: ethereum
+                intents: ['*']
+                description: Ethereum mainnet only.
+          - name: X-NEXUS-Metric
+            type: string
+            intents: ['*']
+            description: Only balance is supported; reject tx_count questions.
+            accepted_fields:
+              - value: balance
+                intents: ['*']
+                description: Native ETH balance only.
 intent_mapping:
   ONCHAIN_METRIC_VERIFY_GENERAL:
     endpoint: /nexus-ethereum-historical-balance
@@ -52,6 +69,12 @@ intent_mapping:
       block_number:
         from: block
         how: The requested exact block number, integer. Never use latest.
+      X-NEXUS-Chain:
+        from: chain
+        how: Must be ethereum; every other chain is unsupported.
+      X-NEXUS-Metric:
+        from: metric
+        how: Must be balance; tx_count is unsupported.
     output:
       balance_gwei:
         path: items.0.value
