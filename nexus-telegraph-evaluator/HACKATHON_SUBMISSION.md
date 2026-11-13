@@ -28,6 +28,18 @@ NEXUS On-chain Integrity Evaluator is a reproducible, evidence-first experiment 
 
 The README and DEMO provide detailed prerequisites, expected outcomes, limitations, and public evidence. These tests were reported as passing during preparation; this entry pack does not assert a new test run.
 
+## Current validation work — November 13, 2026 (v3, NOT submitted)
+
+The authoritative Anjoman documentation explicitly supports both YAML as a string and JSON-object `source` rows. Therefore changing v1 to a JSON object (v2) alone **cannot be treated as a validated fix** for `source_unparseable`.
+
+A deliberately reduced v3 candidate is available in [YAML](data/truth_source_eth_balance_v3.yaml) and an unsigned [JSONL row](data/truth_source_eth_balance_v3.jsonl). It keeps only documented miner fields, preserves a pinned-block query, and restricts input to Ethereum-mainnet balance queries. A fresh **independent read-only test run** downloaded the three published GitHub files by SHA and ran `python3 -m unittest discover -s tests -p 'test_truth_source_v3.py' -v`: **19/19 PASS, 0 failures**, on November 13. Source SHA256: `a9d9621356fea979b70e3262ac1c0fbe822b9ed8de37c625a980d1c2570de5c9`; unsigned JSONL SHA256: `d35cb12bf3ea1d76727eb69989c1e175b9dc24f12b76f3c03626e1dfaf258bc5`. No signing key is committed.
+
+**Critical limitation:** the v3 tests are local fixture/schema-contract checks, not a Telegraph-node schema acceptance; `truth_source` v3 is **not eligible**, and has **not been signed or uploaded**. API reliability, particularly Blockscout's historical response latency, must also be examined before claiming network usefulness. The previous v1 upload remains `rejected/source_unparseable`; do not confuse its HTTP-200 storage receipt with eligibility.
+
+A support request was sent on November 13 to `info@telegraphprotocol.com` via the participant's authorized email, subject `H2 Evaluators #87 — truth_source source_unparseable and final submission link`, asking for detailed source validation and the final H2 submission route for an already registered participant. No reply or completion is claimed.
+
+**No further authenticated write or pool retry** should occur without resolving the specific schema gate and reconciling wallet contributor attribution. No Tradebot/BRAIN modifications or blockchain transactions are part of this activity.
+
 ## Current technical verdict — November 13, 2026 (new evidence)
 
 The official Sepolia evalpool API returned **HTTP 200 / signed=true / accepted=1** for the first `truth_source` upload, but its **independent readback rejected the stored row**: `status: rejected`, `reason_code: source_unparseable`. Receipt: [v1 readback](https://devnode.telegraphprotocol.com/api/evalpool/submissions/mine?submitter=0x43cF97c1Bc280f4fa9cE7Be08E50E7919Ccc05F5&intent_id=ONCHAIN_METRIC_VERIFY_GENERAL); row hash `c4dc036072b8027da2d90666bfe2607240b092a9811274a91e03c2458a81981c`. **The upload is not accepted evaluation material.** This test attempt used a separate, purpose-limited contributor address (`0x43cF97c1Bc280f4fa9cE7Be08E50E7919Ccc05F5`), **not** the original 3-row contributor address (`0xC62cA7cC2d30b88F144E1adF20c9a363818B759f`). Until linked or confirmed by organizers, do not treat the separate address as credited to the registered hackathon participant.
