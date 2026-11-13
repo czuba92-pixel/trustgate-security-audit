@@ -76,6 +76,11 @@ class TruthSourceTests(unittest.TestCase):
         mapping=DATA['intent_mapping']['ONCHAIN_METRIC_VERIFY_GENERAL']
         self.assertEqual(mapping['input']['address']['from'],'address')
         self.assertEqual(mapping['input']['block_number']['from'],'block')
+        hdr=e['params']['header']['required']
+        self.assertEqual([h['name'] for h in hdr], ['X-NEXUS-Chain','X-NEXUS-Metric'])
+        self.assertEqual([h['accepted_fields'][0]['value'] for h in hdr], ['ethereum','balance'])
+        self.assertEqual(mapping['input']['X-NEXUS-Chain']['from'],'chain')
+        self.assertEqual(mapping['input']['X-NEXUS-Metric']['from'],'metric')
 
     def test_output_mapping(self):
         m=DATA['intent_mapping']['ONCHAIN_METRIC_VERIFY_GENERAL']['output']['balance_gwei']
