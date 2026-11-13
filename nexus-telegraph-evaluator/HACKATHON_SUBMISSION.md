@@ -1,5 +1,17 @@
 # Telegraph Hackathon Season II — evaluator entry pack (DRAFT, not submitted)
 
+## Critical correction — authoritative issue #87 changed 2026-11-13 14:12 UTC
+
+**Do not claim this repository currently completes issue #87 or is a qualifying H2 Evaluators delivery.** The authoritative [current issue #87](https://github.com/telegraphprotocol/bounties/issues/87) now calls for keyless public-API `truth_source` evaluation material for the **deterministic** intent `ONCHAIN_METRIC_VERIFY_GENERAL`. It explicitly states **do not build a comparator/scoring module** for this intent. The earlier three `eligible` `preference_pair` rows remain real node receipts, but they **do not fulfill the currently required deliverable**; the legacy WASM comparator is unrelated to what #87 presently accepts. Another public claimant with 241 eligible preference-pair rows reached the same conclusion in [their updated progress comment](https://github.com/telegraphprotocol/bounties/issues/87#issuecomment-6855425266).
+
+The v1 signed truth-source upload was **rejected** (`source_unparseable`). Neither v2 nor v3 has ever received an independent network-eligibility verdict. Local `19/19 PASS` checked only the assertions we wrote, **not** the official Telegraph miner YAML validator, end-to-end routing, or accurate scoring over the intent's entire input domain. The proposed Blockscout source supports only an Ethereum native-balance subset and its custom header assumptions are **not proven to enforce chain/metric restrictions in the network**. Thus v3 is a research artifact, not a production-ready fix.
+
+The advertised public no-fee YAML validation APIs returned **HTML** (`integrate.telegraphprotocol.com/api/validate`) and **HTTP 405** (`anjoman.ai/dashboard/validate`) during this read-only audit; neither supplied a schema verdict. Do not send another signed row until an independently supported validator or official error details prove the fix and its actual input/output behavior.
+
+**Administrative gates still open:** The issue has a public `/claim` comment from `czuba92-pixel` but no observed bot acceptance or `/submit` from this account; the GitHub connector's write to the organizer repo returned HTTP 403. The H2 final entry has not been confirmed and the organizer email has not received a reply as of the audit. No cash or prize has been awarded. **Reward for issue #87 itself: unfunded.**
+
+
+
 **Prepared:** 2026-11-13  
 **Entry status:** Draft for final H2 website submission. No organizer acceptance or prize is implied.
 
