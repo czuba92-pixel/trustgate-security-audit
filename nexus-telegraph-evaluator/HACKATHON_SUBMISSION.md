@@ -28,6 +28,16 @@ NEXUS On-chain Integrity Evaluator is a reproducible, evidence-first experiment 
 
 The README and DEMO provide detailed prerequisites, expected outcomes, limitations, and public evidence. These tests were reported as passing during preparation; this entry pack does not assert a new test run.
 
+## Current technical verdict — November 13, 2026 (new evidence)
+
+The official Sepolia evalpool API returned **HTTP 200 / signed=true / accepted=1** for the first `truth_source` upload, but its **independent readback rejected the stored row**: `status: rejected`, `reason_code: source_unparseable`. Receipt: [v1 readback](https://devnode.telegraphprotocol.com/api/evalpool/submissions/mine?submitter=0x43cF97c1Bc280f4fa9cE7Be08E50E7919Ccc05F5&intent_id=ONCHAIN_METRIC_VERIFY_GENERAL); row hash `c4dc036072b8027da2d90666bfe2607240b092a9811274a91e03c2458a81981c`. **The upload is not accepted evaluation material.**
+
+A [second candidate (v2)](data/truth_source_eth_balance_v2.jsonl) uses the separately documented JSON-object `source` representation instead of YAML as a JSON string. It is a **local/publicly published candidate only, not posted to the node**: the follow-up tool execution was blocked. Do not claim eligibility or retry blindly. Historical balance source checks succeeded at pinned Ethereum blocks 20,000,000 and 19,500,000. That tests the upstream data, not the Telegraph miner schema.
+
+The authenticated final H2 project submission is also **not verified**; user confirmed account registration only. By public GitHub account data, the `czuba92-pixel` account has **already starred** the `telegraphprotocol/bounties` repository. GitHub connector could not post issue comments (HTTP 403). Existing `/claim` is visible, but an organizer/bot acceptance receipt for this claim is still not recorded.
+
+**Current next actions:** independently validate a conforming truth-source schema without blindly posting further rows; obtain an eligible network receipt, post truthful `/submit` on issue #87 if permitted, and submit the separate H2 project in an authenticated session.
+
 ## Important compliance gap discovered on November 13
 
 **Do not send this draft as a claim of completed issue #87 or qualifying H2 evaluator delivery without resolving this gap.** The current [issue #87](https://github.com/telegraphprotocol/bounties/issues/87) and [Anjoman contribution docs](https://anjoman.ai/docs/scoring/contribute-evaluation-data) describe `ONCHAIN_METRIC_VERIFY_GENERAL` as **deterministic**, requesting a working keyless public API **truth source**, uploaded as a row with `label_kind: truth_source` and a miner-style `source` YAML/JSON (or a comparator registered and passing the network checks). The three proven `eligible` records in this repository are **preference pairs**, not truth sources. Technical row eligibility by itself does not establish that the material meets the updated task or is used for ranking. Our WASM module is **not** registered. The advertised `5/5 eligible contributors` pertains to the readback at that epoch and does not replace the truth-source requirement.
@@ -39,7 +49,7 @@ Next technical step: build and independently validate a conforming public, no-ke
 - [x] GitHub code, reproducible guide, accessible demo and archived testnet readback published.
 - [x] Three historic `preference_pair` evaluation rows previously reported `eligible`.
 - [ ] Conforming deterministic `truth_source` or registered, network-accepted comparator (not yet done).
-- [ ] GitHub **Star** on https://github.com/telegraphprotocol/bounties verified for `czuba92-pixel`.
+- [x] GitHub **Star** on https://github.com/telegraphprotocol/bounties verified for `czuba92-pixel` (public starred-repositories API).
 - [ ] Final project entry sent through https://hackathon.telegraphprotocol.com/ (requires signed-in contestant session).
 - [ ] Official final-entry receipt retained.
 
